@@ -1,0 +1,88 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<td-layout>
+  <td-navigation-drawer flex sidenavTitle="Query Grid" logo="assets:teradata" name="Firstname Lastname" email="firstname.lastname@company.com">
+    <mat-nav-list>
+      <a mat-list-item><mat-icon>home</mat-icon>Home</a>
+    </mat-nav-list>
+    <div td-navigation-drawer-menu>
+      <mat-nav-list>
+        <a mat-list-item><mat-icon>account_box</mat-icon>Profile</a>
+      </mat-nav-list>
+    </div>
+  </td-navigation-drawer>
+  <td-layout-nav logo="assets:teradata" toolbarTitle="Query Grid" navigationRoute="/">
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+    
+        <!-- router outlet goes here -->
+    <div layout-gt-sm="row" tdMediaToggle="gt-sm" [mediaClasses]="['push-sm']">
+        <div flex-gt-sm="60">
+          <mat-card>
+            <mat-card-title>Products Sales</mat-card-title>
+            <mat-card-subtitle>usage stats for our products</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              card content
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+              <a mat-button color="accent" class="text-upper">
+                <span>View More</span>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+          <mat-card tdMediaToggle="gt-sm" [mediaClasses]="['push-top']">
+            <mat-card-title>Customer Activity</mat-card-title>
+            <mat-card-subtitle>Recent activity from select members</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              card content
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+              <a mat-button color="accent" class="text-upper">
+                <span>View More</span>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <div flex-gt-sm="40">
+          <mat-card>
+            <mat-card-title>Alerts</mat-card-title>
+            <mat-card-subtitle>Items requiring attention</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              card content
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+              <a mat-button color="accent" class="text-upper">
+                <span>View More</span>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+          <mat-card tdMediaToggle="gt-sm" [mediaClasses]="['push-top']">
+            <mat-card-title>Favorites</mat-card-title>
+            <mat-card-subtitle>Your favorite products</mat-card-subtitle>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              card content
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-actions>
+              <a mat-button color="accent" class="text-upper">
+                <span>View More</span>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+      <td-layout-footer>
+        <div layout="row" layout-align="start center">
+          <span class="mat-caption">Copyright &copy; 2017 Teradata. All rights reserved</span>
+        </div>
+      </td-layout-footer>
+  
+  </td-layout-nav>
+</td-layout>
