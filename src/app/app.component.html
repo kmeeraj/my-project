@@ -17,37 +17,32 @@
     
         <!-- router outlet goes here -->
     <div layout-gt-sm="row" tdMediaToggle="gt-sm" [mediaClasses]="['push-sm']">
-        <div flex-gt-sm="60">
-          <mat-card>
-            <mat-card-title>Products Sales</mat-card-title>
-            <mat-card-subtitle>usage stats for our products</mat-card-subtitle>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-              card content
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-              <a mat-button color="accent" class="text-upper">
-                <span>View More</span>
-              </a>
-            </mat-card-actions>
-          </mat-card>
-          <mat-card tdMediaToggle="gt-sm" [mediaClasses]="['push-top']">
-            <mat-card-title>Customer Activity</mat-card-title>
-            <mat-card-subtitle>Recent activity from select members</mat-card-subtitle>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-              card content
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-              <a mat-button color="accent" class="text-upper">
-                <span>View More</span>
-              </a>
-            </mat-card-actions>
-          </mat-card>
+        <div flex-gt-sm="50">          
+          <mat-card *ngFor="let system of data.systems">
+              <mat-card-title> {{system.name}}</mat-card-title>
+              <mat-card-subtitle>{{system.type}}</mat-card-subtitle>
+              <mat-divider></mat-divider>
+              <mat-card-content>
+                  <td-expansion-panel-group *ngFor="let database of system.databases">
+                    <td-expansion-panel label="{{database.name}}">
+                      <div class="md-padding">
+                        <h3 class="mat-subheading-2">tables</h3>
+                        <ul *ngFor="let table of database.tables" dnd-droppable (onDropSuccess)="addTo($event)">
+                          <li [dragData]="table" dnd-draggable  >{{table}}</li>
+                        </ul>
+                      </div>
+                    </td-expansion-panel>                   
+                  </td-expansion-panel-group>
+              </mat-card-content>
+              <mat-divider></mat-divider>
+              <mat-card-actions>
+                <a mat-button color="accent" class="text-upper">
+                  <span>View More</span>
+                </a>
+              </mat-card-actions>
+            </mat-card>          
         </div>
-        <div flex-gt-sm="40">
+        <div flex-gt-sm="100">
           <mat-card>
             <mat-card-title>Alerts</mat-card-title>
             <mat-card-subtitle>Items requiring attention</mat-card-subtitle>
@@ -61,21 +56,7 @@
                 <span>View More</span>
               </a>
             </mat-card-actions>
-          </mat-card>
-          <mat-card tdMediaToggle="gt-sm" [mediaClasses]="['push-top']">
-            <mat-card-title>Favorites</mat-card-title>
-            <mat-card-subtitle>Your favorite products</mat-card-subtitle>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-              card content
-            </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-              <a mat-button color="accent" class="text-upper">
-                <span>View More</span>
-              </a>
-            </mat-card-actions>
-          </mat-card>
+          </mat-card>         
         </div>
       </div>
       <td-layout-footer>

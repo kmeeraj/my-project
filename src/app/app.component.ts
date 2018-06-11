@@ -10,7 +10,7 @@ import { TdMediaService } from '@covalent/core';
 })
 export class AppComponent {
   title = 'app';
-  data=[];
+  data={};
   
   logListEvent = function(action, index, external, type) {
     var message = external ? 'External ' : '';
@@ -37,6 +37,11 @@ export class AppComponent {
     console.log(message);
   };
 
+  addTo($event: any) {
+    console.log($event);
+    console.log($event.dragData);
+  }
+
   constructor(public media: TdMediaService,private _iconRegistry: MatIconRegistry,
     private _domSanitizer: DomSanitizer) {
     this._iconRegistry.addSvgIconInNamespace('assets', 'teradata',
@@ -55,5 +60,43 @@ export class AppComponent {
     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/listener.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'querygrid',
     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/querygrid.svg'));
+    this.data={
+      "systems": [{
+              "name": "System1",
+              "type": "Hadoop",
+              "databases": [{
+                      "name": "ties",
+                      "tables": ["emp", "salary", "Mustang"]
+                  },
+                  {
+                      "name": "qgpt",
+                      "tables": ["abc", "xyz", "lmn"]
+                  },
+                  {
+                      "name": "rto",
+                      "tables": ["animals", "birds"]
+                  }
+              ]
+          },
+  
+          {
+              "name": "System2",
+              "type": "Teradata",
+              "databases": [{
+                      "name": "ties",
+                      "tables": ["emp", "salary", "Mustang"]
+                  },
+                  {
+                      "name": "qgpt",
+                      "tables": ["abc", "xyz", "lmn"]
+                  },
+                  {
+                      "name": "rto",
+                      "tables": ["animals", "birds"]
+                  }
+              ]
+          }
+      ]
+  };
     }
 }
