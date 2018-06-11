@@ -1,6 +1,28 @@
 
 mat-toolbar .mat-icon.mat-icon-logo { width: 100px; height: 100px; }
 
+ul{
+    min-height: 42px;
+    margin: 0px;
+    padding-left: 0px;
+}
+
+ul[dnd-list] li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
+.dndPlaceholder {
+    background-color: #ddd !important;
+    display: block;
+    min-height: 42px;
+}
+
 .dnd-drag-start {
     -moz-transform:scale(0.8);
     -webkit-transform:scale(0.8);

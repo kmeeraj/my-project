@@ -17,8 +17,8 @@
     
         <!-- router outlet goes here -->
     <div layout-gt-sm="row" tdMediaToggle="gt-sm" [mediaClasses]="['push-sm']">
-        <div flex-gt-sm="50">          
-          <mat-card *ngFor="let system of data.systems">
+        <div flex-gt-sm="25" *ngFor="let system of data['systems']">          
+          <mat-card>
               <mat-card-title> {{system.name}}</mat-card-title>
               <mat-card-subtitle>{{system.type}}</mat-card-subtitle>
               <mat-divider></mat-divider>
@@ -27,10 +27,17 @@
                     <td-expansion-panel label="{{database.name}}">
                       <div class="md-padding">
                         <h3 class="mat-subheading-2">tables</h3>
-                        <ul *ngFor="let table of database.tables" dnd-droppable (onDropSuccess)="addTo($event)">
-                          <li [dragData]="table" dnd-draggable  >{{table}}</li>
+                        <ul dnd-list="database.tables" dnd-droppable (onDropSuccess)="addTo($event,database,system)">
+                          <li 
+                          *ngFor="let table of  database.info"
+                          dnd-draggable="table"
+                          [dragData]="table"
+                          dnd-moved="database.tables.splice($index, 1)"
+                          dnd-effect-allowed="move"
+                          dnd-selected="models.selected = table"
+                          ng-class="{'selected': models.selected === table}" >{{table.table}}</li>
                         </ul>
-                      </div>
+                      </div>  
                     </td-expansion-panel>                   
                   </td-expansion-panel-group>
               </mat-card-content>
@@ -42,20 +49,15 @@
               </mat-card-actions>
             </mat-card>          
         </div>
-        <div flex-gt-sm="100">
+        <div flex-gt-sm="50">
           <mat-card>
             <mat-card-title>Alerts</mat-card-title>
             <mat-card-subtitle>Items requiring attention</mat-card-subtitle>
             <mat-divider></mat-divider>
             <mat-card-content>
-              card content
+              SVG here
             </mat-card-content>
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-              <a mat-button color="accent" class="text-upper">
-                <span>View More</span>
-              </a>
-            </mat-card-actions>
+            
           </mat-card>         
         </div>
       </div>

@@ -11,6 +11,7 @@ import { TdMediaService } from '@covalent/core';
 export class AppComponent {
   title = 'app';
   data={};
+  list=[];
   
   logListEvent = function(action, index, external, type) {
     var message = external ? 'External ' : '';
@@ -18,29 +19,35 @@ export class AppComponent {
     console.log(message);
   };
 
-  dragoverCallback = function(index, external, type, callback) {
-    this.logListEvent('dragged over', index, external, type);
-    // Invoke callback to origin for container types.
-    if (type == 'container' && !external) {
-        console.log('Container being dragged contains ' + callback() + ' items');
-    }
-    return index < 10; // Disallow dropping in the third row.
-  };
-
-  dropCallback = function(index, item, external, type) {
-    this.logListEvent('dropped at', index, external, type);
-    // Return false here to cancel drop. Return true if you insert the item yourself.
-    return item;
-  };
-
   logEvent = function(message) {
     console.log(message);
   };
 
-  addTo($event: any) {
-    console.log($event);
+  addTo($event: any,database:any,system:any) {
+    console.log(database);
     console.log($event.dragData);
+    database.tables.push($event.dragData.table);
+    database.info.push({
+        "system":system.name,
+        "database":database.name,
+        "table":$event.dragData.table});
   }
+
+  updateData = function(){
+     for(let system of this.data.systems){
+         for(let db of system.databases){
+            db["info"]=[];
+             for(let table of db.tables){
+                let temp = {
+                    "system":system.name,
+                    "database":db.name,
+                    "table":table
+                }
+                db["info"].push(temp);                
+            }
+         }
+     }
+  };
 
   constructor(public media: TdMediaService,private _iconRegistry: MatIconRegistry,
     private _domSanitizer: DomSanitizer) {
@@ -60,6 +67,13 @@ export class AppComponent {
     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/listener.svg'));
     this._iconRegistry.addSvgIconInNamespace('assets', 'querygrid',
     this._domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/querygrid.svg'));
+    this.list= [
+        {listName: "A", items: [
+            { "label":"item A1","selected": false},{"label":"item A3"},{"label":"item A3"},{"label":"item A4"}], dragging: false},
+        {listName: "B", items: [
+            {"label":"item B1","selected": false},{"label":"item B2"},{"label":"item B3"},{"label":"item B4"}], dragging: false}
+      ];
+  
     this.data={
       "systems": [{
               "name": "System1",
@@ -97,6 +111,9 @@ export class AppComponent {
               ]
           }
       ]
-  };
+    };
+    this.updateData();
     }
+
+    
 }
