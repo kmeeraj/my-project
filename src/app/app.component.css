@@ -1,6 +1,10 @@
 
 mat-toolbar .mat-icon.mat-icon-logo { width: 100px; height: 100px; }
 
+svg {
+    pointer-events: none !important;
+}
+
 ul{
     min-height: 42px;
     margin: 0px;

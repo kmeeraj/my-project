@@ -24,17 +24,18 @@
               <mat-divider></mat-divider>
               <mat-card-content>
                   <td-expansion-panel-group *ngFor="let database of system.databases">
-                    <td-expansion-panel label="{{database.name}}">
-                      <div class="md-padding">
+                    <td-expansion-panel label="{{database.name}}" expand="{{database.expand}}"  >
+                      <div class="md-padding"  [attr.style]="getBackground(database.color)" >
                         <h3 class="mat-subheading-2">tables</h3>
-                        <ul dnd-list="database.tables" dnd-droppable (onDropSuccess)="addTo($event,database,system)">
-                          <li 
-                          *ngFor="let table of  database.info"
+                        <ul dnd-list="database.tables"  *ngFor="let table of  database.info"
+                        dnd-droppable
+                        (onDropSuccess)="addTo($event,database,system,table)"    >
+                          <li                        
                           dnd-draggable="table"
                           [dragData]="table"
                           dnd-moved="database.tables.splice($index, 1)"
                           dnd-effect-allowed="move"
-                          dnd-selected="models.selected = table"
+                          dnd-selected="models.selected = table"                          
                           ng-class="{'selected': models.selected === table}" >{{table.table}}</li>
                         </ul>
                       </div>  
@@ -51,11 +52,11 @@
         </div>
         <div flex-gt-sm="50">
           <mat-card>
-            <mat-card-title>Alerts</mat-card-title>
-            <mat-card-subtitle>Items requiring attention</mat-card-subtitle>
+            <mat-card-title>Ecosystem</mat-card-title>
+            <mat-card-subtitle>Complete picute of the all systems</mat-card-subtitle>
             <mat-divider></mat-divider>
             <mat-card-content>
-              SVG here
+              <app-svgwidget [data]="data"></app-svgwidget>
             </mat-card-content>
             
           </mat-card>         

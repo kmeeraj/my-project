@@ -19,13 +19,22 @@ import { MatButtonModule, MatListModule, MatCardModule, MatMenuModule, MatInputM
   MatProgressSpinnerModule, MatSelectModule, MatSlideToggleModule, MatDialogModule, MatSnackBarModule, MatToolbarModule,
   MatTabsModule, MatSidenavModule, MatTooltipModule, MatRippleModule, MatRadioModule, MatGridListModule,
   MatDatepickerModule, MatNativeDateModule, MatSliderModule, MatAutocompleteModule } from '@angular/material';
+import { SvgwidgetComponent } from './svgwidget/svgwidget.component';
+import { SystemwidgetComponent } from './systemwidget/systemwidget.component';
+import { RouterModule, ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SvgwidgetComponent,
+    SystemwidgetComponent
   ],
   imports: [
-
+    RouterModule.forRoot([]),
+    BrowserModule,
+    CommonModule,
+    RouterModule,    
     /** Material Modules */
     MatButtonModule,
     MatListModule,
