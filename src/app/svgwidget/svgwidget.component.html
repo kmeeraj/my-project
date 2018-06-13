@@ -5,15 +5,15 @@
       <path [attr.d]="dis.d" [attr.style]="getBackground(dis.color)"   ></path>      
     </g>
     <g *ngFor="let dis of data.systems"  class="clickable" [attr.id]="dis.name" >
-        <text [attr.x]="dis.centerX" [attr.y]="dis.centerY">Name: {{dis.name }}, Type : {{dis.type }}</text>      
+        <text [attr.x]="dis.centerX" [attr.y]="dis.centerY" style="fill: #9400D3; stroke: none; font-size: 12px;" >Name: {{dis.name }}, Type : {{dis.type }}</text>      
     </g>
     <g class="clickable" *ngFor="let dis of data.systems"  >
-        <circle *ngFor="let db of dis.databases; let i =index "  id="db{{dis.name}}{{i}}" [attr.fill]="db.color" stroke="black" stroke-width="1" r="20" [attr.cx]="db.x" [attr.cy]="db.y" (click)="expand(db)"></circle>
-        <text  *ngFor="let db of dis.databases; let i =index " [attr.x]="db.x" [attr.y]="db.y" >Name: {{db.name }}</text>
+        <circle *ngFor="let db of dis.databases; let i =index "  id="db{{dis.name}}{{i}}" [attr.fill]="db.color" r="20" [attr.cx]="db.x" [attr.cy]="db.y" (click)="expand(db)"></circle>
+        <text  *ngFor="let db of dis.databases; let i =index " [attr.x]="db.x" [attr.y]="db.y" style="fill: #4682B4; stroke: none; font-size: 12px;"  >Name: {{db.name }}</text>
     </g>
     <g class="mapper clickable" *ngFor="let mapper of data.mapping"  >
-            <path [attr.d]="getArc(mapper)"  fill="none" stroke="#000" stroke-width="2px" />            
-            <text [attr.x]="getMapperX(mapper)" [attr.y]="getMapperY(mapper)">{{mapper.text}}</text> 
+            <path [attr.d]="getArc(mapper)"  fill="none" stroke="#9400D3" stroke-width="4px" />            
+            <text [attr.x]="getMapperX(mapper)" style="fill: #2F4F4F; stroke: none; font-size: 12px;"  [attr.y]="getMapperY(mapper)">{{mapper.text}}</text> 
     </g>
     
 </svg>

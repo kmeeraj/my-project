@@ -32,11 +32,11 @@ export class SvgwidgetComponent implements OnInit {
   }
 
   getMapperX(mapper){
-   return ((mapper.to.x + mapper.from.x )/2)+mapper.delta; 
+   return (mapper.from.x /2)+mapper.delta; 
   }
 
   getArc(mapper){
-    "M100,200  C100,100  400,100  400,200"
+    
     var d = "M"+(mapper.to.x ) +","+(mapper.to.y )+ "  C"+(mapper.to.x+mapper.delta)+","+(mapper.to.y-mapper.delta)+ " " + (mapper.from.x+mapper.delta )+ "," +( mapper.from.y-mapper.delta ) + " " + (mapper.from.x) + "," + (mapper.from.y) ;
     console.log(d);
     console.log(mapper.to.x,mapper.to.y);
